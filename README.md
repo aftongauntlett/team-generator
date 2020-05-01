@@ -1,4 +1,4 @@
-## Template Engine - Employee Summary
+# Team Generator
 
 ![GitHub stars](https://img.shields.io/github/stars/aftongauntlett/readme-generator?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/aftongauntlett/readme-generator?style=social)
