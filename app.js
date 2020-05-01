@@ -1,5 +1,5 @@
 // added htmlRenderer
-const Letter = require("../lib/htmlRenderer");
+const renderer = require("./lib/htmlRenderer");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -19,6 +19,33 @@ const teamMembers = [];
 // This will be an array of the id values created for each object so there are no duplicates
 const idArray = [];
 
+function begin() {
+  inquirer.prompt([
+    {
+      type: "list",
+      message: "Please select an employee type:",
+      name: "type",
+      choices: [
+        "Manager",
+        "Engineer",
+        "Intern",
+        "Complete",
+      ]
+    }
+  ]).then(response => {
+    if (response.type === "Manager") {
+      createManager("Manager");
+    } else if (response.type === "Engineer") {
+      createEmployee("Engineer");
+    } else if (response.type === "Intern") {
+      createIntern("Intern");
+    } else {
+      console.info("Complete")
+      end();
+    }
+  })
+}
+
 
 // STUDENT: This function generates all the questions for creating the manager. You need to add more to this.
 function createManager() {
@@ -37,27 +64,68 @@ function createManager() {
       }
     },
 
-    // STUDENT: Add other questions here!
+    {
+      type: "input",
+      name: "managerEmail",
+      message: "What is your manager's email?",
+      validate: answer => {
+        if (answer !== "") {
+          return true;
+        }
+        return "Please enter at least one character.";
+      }
+    },
 
+    {
+      type: "input",
+      name: "managerOfficeNum",
+      message: "What is your manager's office number?",
+      validate: answer => {
+        if (answer !== "") {
+          return true;
+        }
+        return "Please enter at least one character.";
+      },
 
+    }
   ]).then(answers => {
     // STUDENT: Process the response by instatiating a new object in the Manager class
 
 
     // Now call the next question set
     createTeam();
-  });
+  })
 }
 
 // This function starts team creation.
 function createTeam() {
   inquirer.prompt([
-    // STUDENT: Ask which type of team member should be created with a list of choices
+    {
+      type: "list",
+      message: "Please select an employee type:",
+      name: "type",
+      choices: [
+        "Manager",
+        "Engineer",
+        "Intern",
+        "Complete",
+      ]
+    }
+
 
   ]).then(userChoice => {
     // STUDENT: Based on which choice they make, call the correct function to ask more questions.
     // If no choice is made, then go to the rendering function.
-
+    if (userChoice.type === "Manager") {
+      createManager("Manager");
+    } else if (userChoice.type === "Engineer") {
+      createEmployee("Engineer");
+    } else if (userChoice.type === "Intern") {
+      createIntern("Intern");
+    } else {
+      console.info("Complete")
+      end();
+    }
 
   });
 }
@@ -111,52 +179,11 @@ startMenu();
 
 
 
-// start function
-// Do you want to add a team member? If so choose a type:
-// Manager, Engineer, Intern, I am done
-// Manager function
-// ask all of the manager questions. when done, go back to start function
+
+// Create Engineer
 
 
-
-// random stuff gary linked out in slack
-const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
-const inquirer = require("inquirer");
-const path = require("path");
-const fs = require("fs");
-const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "team.html");
-// This file will generate the final HTML. You don't need to touch this at all!
-const render = require("./lib/htmlRenderer");
-// This will be an array of all team member objects created
-const teamMembers = [];
-// This will be an array of the id values created for each object so there are no duplicates
-const idArray = [];
-// start()
-// Do you want to add a team member? If so, choose a type:
-// Manager, Engineer, Intern, I'm Done
-function start() {
-  inquirer.prompt([
-    {
-      type: "list",
-      message: "Choose an employee type:",
-      name: "type",
-      choices: [
-        "Manager",
-        "Engineer",
-        "Intern",
-        "Finished"
-      ]
-    }
-  ]).then(response => {
-    if (response.type === "manager") {
-      createEmployee("manager")
-    }
-  })
-}
-// createManager()
+// Create Manager 
 // ask all the manager questions, when done, go back to start()
 function createEmployee(employeeType) {
   inquirer.prompt([
@@ -177,12 +204,23 @@ function createManager(genericData) {
       type: "input",
       message: "Enter name:",
       name: "name"
+    },
+    {
+      type: "input",
+      message: "Enter email:",
+      name: "email"
+    },
+    {
+      type: "input",
+      message: "Enter Office Number:",
+      name: "officeNumber"
     }
   ]).then(response => {
-    // process all the answers
-    const managerObj = new Manager(genericData.name, genericData.email, response.officeNumber)
+
+    // Call new manager here
+    const managerObj = new Manager(response.name, teamMembers.length + 1, response.email, response.officeNumber)
     teamMembers.push(managerObj)
-    start();
+    createTeam();
   })
 }
 // STUDENT: This function will call the render function required near the top (line 12), 
@@ -190,6 +228,32 @@ function createManager(genericData) {
 // in a directory called output.
 function renderHtmlPage() {
   const html = render(teamMembers)
-  fs.writeFile("output/index.htnl", html, err => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // fixed typo (htnl)
+  fs.writeFile("output/index.html", html, err => {
   })
 }
