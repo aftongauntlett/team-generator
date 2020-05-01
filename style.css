@@ -11,14 +11,14 @@ body {
     margin: 20px;
     width: 18rem;
     text-align: center;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .team-area {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-
 }
 
 .employee-card {
@@ -39,12 +39,12 @@ body {
 }
 h1 {
     color: black;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 55px;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .jumbotron {
-  /* background-image: url(https://wallpaperaccess.com/full/399976.jpg) ; */
+  /* background-image: url(https://wallpapertag.com/wallpaper/full/1/9/4/504730-electric-blue-wallpaper-1920x1080-pictures.jpg) ; */
   background-image: url(https://www.itl.cat/pngfile/big/187-1876859_light-gradient-background-gradient-background-light-gradient-hd.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
