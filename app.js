@@ -1,3 +1,5 @@
+// added htmlRenderer
+const Letter = require("../lib/htmlRenderer");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -19,7 +21,7 @@ const idArray = [];
 
 
 // STUDENT: This function generates all the questions for creating the manager. You need to add more to this.
-function createManager(){
+function createManager() {
   console.log("Please build your team");
   inquirer.prompt([
     {
@@ -38,13 +40,13 @@ function createManager(){
     // STUDENT: Add other questions here!
 
 
-    ]).then(answers => {
-      // STUDENT: Process the response by instatiating a new object in the Manager class
+  ]).then(answers => {
+    // STUDENT: Process the response by instatiating a new object in the Manager class
 
 
-      // Now call the next question set
-      createTeam();
-    });
+    // Now call the next question set
+    createTeam();
+  });
 }
 
 // This function starts team creation.
@@ -68,11 +70,11 @@ function createEngineer() {
   ]).then(userChoice => {
     // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
     // instantiate the Engineer constructor.
-    
-    
+
+
     // STUDENT: When finished:
-       // Add the new object to the team member array
-       // Pass control back to the createTeam() function
+    // Add the new object to the team member array
+    // Pass control back to the createTeam() function
 
   });
 }
@@ -83,7 +85,7 @@ function createEngineer() {
 // STUDENT: This function will call the render function required near the top (line 12), 
 // and pass INTO it the teamMembers area; from there, write the HTML returned back to a file 
 // in a directory called output.
-function renderHtmlPage(){
+function renderHtmlPage() {
 
 }
 
@@ -111,14 +113,14 @@ startMenu();
 
 // start function
 // Do you want to add a team member? If so choose a type:
-  // Manager, Engineer, Intern, I am done
+// Manager, Engineer, Intern, I am done
 // Manager function
-  // ask all of the manager questions. when done, go back to start function
+// ask all of the manager questions. when done, go back to start function
 
-  
+
 
 // random stuff gary linked out in slack
-  const Manager = require("./lib/Manager");
+const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
@@ -134,7 +136,7 @@ const teamMembers = [];
 const idArray = [];
 // start()
 // Do you want to add a team member? If so, choose a type:
-   // Manager, Engineer, Intern, I'm Done
+// Manager, Engineer, Intern, I'm Done
 function start() {
   inquirer.prompt([
     {
@@ -148,37 +150,37 @@ function start() {
         "Finished"
       ]
     }
-  ]).then( response => {
-    if( response.type === "manager" ){
+  ]).then(response => {
+    if (response.type === "manager") {
       createEmployee("manager")
     }
   })
 }
 // createManager()
-   // ask all the manager questions, when done, go back to start()
-function createEmployee(employeeType){
+// ask all the manager questions, when done, go back to start()
+function createEmployee(employeeType) {
   inquirer.prompt([
     {
       type: "input",
       message: "Enter name:",
       name: "name"
     }
-  ]).then( genericResponses => {
-    if( employeeType === "manager" ){
+  ]).then(genericResponses => {
+    if (employeeType === "manager") {
       createManager(genericResponses)
     }
   });
 }
-function createManager(genericData){
+function createManager(genericData) {
   inquirer.prompt([
     {
       type: "input",
       message: "Enter name:",
       name: "name"
     }
-  ]).then( response => {
+  ]).then(response => {
     // process all the answers
-    const managerObj = new Manager(genericData.name, genericData.email, response.officeNumber  )
+    const managerObj = new Manager(genericData.name, genericData.email, response.officeNumber)
     teamMembers.push(managerObj)
     start();
   })
@@ -186,7 +188,7 @@ function createManager(genericData){
 // STUDENT: This function will call the render function required near the top (line 12), 
 // and pass INTO it the teamMembers area; from there, write the HTML returned back to a file 
 // in a directory called output.
-function renderHtmlPage(){
+function renderHtmlPage() {
   const html = render(teamMembers)
   fs.writeFile("output/index.htnl", html, err => {
   })
