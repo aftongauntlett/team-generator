@@ -1,0 +1,52 @@
+body {
+    background-color: rgba(225, 226, 231, 0.87);
+}
+
+.card {
+   display: flex;
+   justify-content: space-between;
+   justify-content: center;
+   flex-wrap: wrap;
+    padding: 20px;
+    margin: 20px;
+    width: 18rem;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.team-area {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.employee-card {
+    display: flex;
+  justify-content: center;
+}
+
+
+.row {
+    display: flex;
+   justify-content: space-between;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+
+.card-header {
+    background-color: rgba(105, 145, 168, 0.548);
+}
+h1 {
+    color: black;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 55px;
+}
+
+.jumbotron {
+  /* background-image: url(https://wallpaperaccess.com/full/399976.jpg) ; */
+  background-image: url(https://www.itl.cat/pngfile/big/187-1876859_light-gradient-background-gradient-background-light-gradient-hd.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
